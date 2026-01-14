@@ -7,7 +7,7 @@ async function muatProduk() {
     const container = document.getElementById('produk-container');
 
     try {
-        const response = await fetch('/api/get-produk');
+        const response = await fetch('/netlify/functions/get-produk');
         if (!response.ok) throw new Error('Response API bermasalah');
         
         const data = await response.json();
