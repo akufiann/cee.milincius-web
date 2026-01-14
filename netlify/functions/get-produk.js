@@ -1,21 +1,24 @@
-const { createClient } = require('@vercel/postgres');
+const { Client } = require('pg');
 
-module.exports = async (req, res) => {
-  // Menyiapkan header agar data bisa dibaca oleh Frontend (CORS)
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Content-Type', 'application/json');
+exports.handler = async (event, context) => {
+  const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false }
+  });
 
-  const client = createClient();
-  
   try {
     await client.connect();
-    // Mengambil data produk, diurutkan berdasarkan kategori agar rapi di web
-    const { rows } = await client.query('SELECT * FROM produk ORDER BY kategori ASC, nama ASC');
-    
-    return res.status(200).json(rows);
-  } catch (error) {
-    console.error('Database Error:', error);
-    return res.status(500).json({ error: 'Gagal mengambil data dari database' });
+    const result = await client.query('SELECT * FROM produk');
+    return {
+      statusCode: 200,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(result.rows),
+    };
+  } catch (err) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Gagal ambil data", detail: err.message }),
+    };
   } finally {
     await client.end();
   }
