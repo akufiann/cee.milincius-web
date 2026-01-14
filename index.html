@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cee.milincius | Jajanan Gen-Z</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">CEE_MILINCIUS</div>
+            <div class="nav-icons">
+                <i class="fa-regular fa-heart"></i>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span id="cart-badge">0</span>
+                </div>
+                <a href="https://wa.me/6287823700686" target="_blank">
+                    <i class="fa-solid fa-headset"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>JAJANAN<br>GEN-Z</h1>
+            <p>Pilih cemilan favoritmu, sesuaikan rasanya, dan nikmati kelezatannya!</p>
+            <a href="#produk-list" class="btn-explore">Mulai Jajan</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="produk-list">
+            <h2 class="section-title">Daftar Menu Kami</h2>
+            <div id="loading">Menyiapkan menu lezat...</div>
+            <div class="product-grid" id="produk-container"></div>
+        </section>
+    </main>
+
+    <div id="product-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modal-info"></div>
+            <div id="dynamic-options-container"></div>
+            <button class="btn-buy-now" onclick="kirimWA()">
+                Beli Sekarang - Rp <span id="modal-total-price">0</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
